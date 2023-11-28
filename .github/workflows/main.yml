@@ -5,14 +5,18 @@ on:
     branches: [main]
   workflow_dispatch:
 
-jobs:
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-lastest
-    steps:
-      - name: Send file to ftp
-        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
-        with:
+name: 🚀 Deploy website on push
+  jobs:
+    web-deploy:
+      name: 🎉 Deploy
+      runs-on: ubuntu-latest
+      steps:
+        - name: 🚚 Get latest code
+          uses: actions/checkout@v3
+        
+        - name: 📂 Sync files
+          uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+          with:
             ftp-host: 31.186.11.151
             ftp_username: ${{ secrets.FTP_USERNAME }}
             ftp_password: ${{ secrets.FTP_PASSWORD }}
