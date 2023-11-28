@@ -1,0 +1,27 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-lastest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+      - name: Download artifact
+        uses: actions/download-atifact@main
+        with:
+          name: dist
+          path: dist
+      - name: Sync file to hosting
+        uses: SamKirland/FTP-Deploy-Action@4.0.0
+        with:
+          server: 31.186.11.151
+          username: ${{ secrets.ftp.username }}
+          password: ${{ secrests.ftp.password }}
+    
+       
