@@ -22,6 +22,6 @@ jobs:
         with:
           server: 31.186.11.151
           username: ${{ secrets.ftp.username }}
-          password: ${{ secrests.ftp.password }}
+          password: ${{ secrets.ftp.password }}
     
        
